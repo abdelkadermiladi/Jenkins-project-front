@@ -1,0 +1,19 @@
+<table class="job-table">
+    <thead>
+      <tr>
+        <th>Job Name</th>
+        <th>Build Number</th>
+        <th>Date</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobDescriptions">
+        <td>{{ job.jobname }}</td>
+        <td>{{ job.buildnumber }}</td>
+        <td>{{ job.date }}</td>
+        <td>{{ job.duration }}</td>
+      </tr>
+    </tbody>
+</table>
+  

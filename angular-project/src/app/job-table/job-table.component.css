@@ -1,0 +1,20 @@
+.job-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .job-table th,
+  .job-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .job-table th {
+    font-weight: bold;
+  }
+  
+  .job-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
