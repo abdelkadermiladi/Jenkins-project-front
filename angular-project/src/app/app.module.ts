@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { JobTableComponent } from './job-table/job-table.component';
+import { JobTableRangeComponent } from './job-table-range/job-table-range.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobTableComponent
+    JobTableComponent,
+    JobTableRangeComponent
   ],
   imports: [
     BrowserModule,
