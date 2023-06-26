@@ -2,11 +2,19 @@
   <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Job Description</h1>
   <app-job-table></app-job-table>
 </div>
+
 <br><br><br>
 
 <button class="custom-button" (click)="showJobTable()">Show last hour job table</button>
 
 <div *ngIf="showTable">
-  <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Hour Job Description</h1>
-  <app-job-table-range></app-job-table-range>
+  <div style="display: flex; flex-wrap: wrap;">
+    <div style="flex: 1;">
+      <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Hour Job Description</h1>
+      <app-job-table-range></app-job-table-range>
+    </div>
+    <div style="flex: 1;">
+      <app-bar-chart></app-bar-chart>
+    </div>
+  </div>
 </div>

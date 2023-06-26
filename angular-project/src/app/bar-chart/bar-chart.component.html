@@ -1,0 +1,15 @@
+<div class="chart-container">
+    <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Bar Chart</h1>
+    <div class="legend">
+      <div *ngFor="let item of chartData; let i = index" class="legend-item">
+        <div class="legend-color" [style.background-color]="chartColors[i]"></div>
+        <span class="legend-label">Data {{ i + 1 }}</span>
+      </div>
+    </div>
+    <div class="chart">
+      <div *ngFor="let value of chartData; let i = index" class="bar" [style.height.%]="(value / maxValue) * 80" [style.background-color]="chartColors[i]">
+        {{ value }}
+      </div>
+    </div>
+  </div>
+  
