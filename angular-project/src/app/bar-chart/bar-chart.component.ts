@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,29 +6,30 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent {
-  chartData: number[] = [];
-  chartLabels: string[] = [];
-  chartColors: string[] = ['#2196F3', '#4CAF50', '#FFC107', '#9C27B0','#805FF9'];
-  maxValue: number = 0;
+export class BarChartComponent implements OnInit {
+  builds: { buildnumber: string, duration: string }[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.fetchJobDurationsByTimeRange();
+    this.getJobDurations();
   }
 
-  fetchJobDurationsByTimeRange() {
-    this.http.get<any>('http://localhost:8082/api/job-durations-by-time-range')
-      .subscribe(
-        data => {
-          this.chartData = data.map((item: any) => item.duration);
-          this.chartLabels = data.map((item: any) => item.buildnumber);
-          this.maxValue = Math.max(...this.chartData);
-        },
-        error => {
-          console.log('Error retrieving job durations by time range:', error);
-        }
-      );
+  getJobDurations() {
+    this.http.get<any[]>('http://localhost:8082/api/job-durations-by-time-range').subscribe(
+      response => {
+        this.builds = response.map(item => ({ buildnumber: item.buildnumber, duration: item.duration }));
+      },
+      error => {
+        console.error('Error fetching job durations:', error);
+      }
+    );
+  }
+
+  getBarWidth(duration: string) {
+    const milliseconds = parseInt(duration.split(' ')[0]);
+    const maxDuration = Math.max(...this.builds.map(build => parseInt(build.duration.split(' ')[0])));
+    const maxWidth = 600; // Adjust this value to change the maximum bar width
+    return (milliseconds / maxDuration) * maxWidth + 'px';
   }
 }

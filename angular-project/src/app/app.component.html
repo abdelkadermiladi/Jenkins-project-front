@@ -3,9 +3,12 @@
   <app-job-table></app-job-table>
 </div>
 
-<br><br><br>
+<br>
 
-<button class="custom-button" (click)="showJobTable()">Show last hour job table</button>
+<div class="button-container">
+  <button class="custom-button" (click)="showJobTable()">Show last hour job table</button>
+</div>
+
 
 <div *ngIf="showTable">
   <div style="display: flex; flex-wrap: wrap;">
