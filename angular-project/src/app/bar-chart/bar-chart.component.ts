@@ -16,7 +16,7 @@ export class BarChartComponent implements OnInit {
   }
 
   getJobDurations() {
-    this.http.get<any[]>('http://localhost:8082/api/job-durations-by-time-range').subscribe(
+    this.http.get<any[]>('http://localhost:8082/api/job-durations-last-hour').subscribe(
       response => {
         this.builds = response.map(item => ({ buildnumber: item.buildnumber, duration: item.duration }));
       },

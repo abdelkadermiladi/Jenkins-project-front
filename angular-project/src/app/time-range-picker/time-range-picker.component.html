@@ -1,0 +1,24 @@
+
+  <div>
+    <input type="string" [(ngModel)]="startTime" placeholder="startTime">
+    <input type="string" [(ngModel)]="endTime" placeholder="endTime">
+    <button (click)="submitForm()">Envoyer</button>
+  </div>
+  <table class="job-table">
+    <thead>
+      <tr>
+        <th>Job Name</th>
+        <th>Build Number</th>
+        <th>Date</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jobBuild of jobBuilds">
+        <td>{{ jobBuild.jobname }}</td>
+        <td>{{ jobBuild.buildnumber }}</td>
+        <td>{{ jobBuild.date }}</td>
+        <td>{{ jobBuild.duration }}</td>
+      </tr>
+    </tbody>
+</table>
