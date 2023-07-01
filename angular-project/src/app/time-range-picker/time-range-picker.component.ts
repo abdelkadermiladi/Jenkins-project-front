@@ -9,18 +9,29 @@ import { HttpClient } from '@angular/common/http';
 export class TimeRangePickerComponent {
   startTime!: string;
   endTime!: string;
-  jobBuilds: any[] = []; // Ajoutez cette ligne pour stocker les données des builds de travail
+  jobBuilds: any[] = [];
+  DisplayTable: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   submitForm() {
-    const dateData = { startTime: this.startTime, endTime: this.endTime };
+    const startDate = new Date(this.startTime);
+    const endDate = new Date(this.endTime);
+
+    const formattedStartDate = startDate.toISOString().slice(0, 16);
+    const formattedEndDate = endDate.toISOString().slice(0, 16);
+
+    const dateData = {
+      startTime: formattedStartDate,
+      endTime: formattedEndDate
+    };
 
     this.http.post<any[]>('http://localhost:8082/api/job-builds-by-time-range-picker', dateData)
     .subscribe(
       (response) => {
         console.log('Réponse du serveur :', response);
-        this.jobBuilds = response; // Stockez les données renvoyées dans la propriété jobBuilds
+        this.jobBuilds = response;
+        this.DisplayTable = true;
       },
       (error) => {
         console.error('Erreur lors de la soumission du formulaire :', error);

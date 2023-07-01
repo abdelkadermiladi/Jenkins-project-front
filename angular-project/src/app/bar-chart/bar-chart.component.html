@@ -1,5 +1,5 @@
 <div>
-  <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Build Durations</h1>
+  <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Hour Build Durations</h1>
   <div class="bar-container" *ngFor="let build of builds">
     <div class="legend">Number {{ build.buildnumber }}:</div>
     <div class="bar" [style.width]="getBarWidth(build.duration)">

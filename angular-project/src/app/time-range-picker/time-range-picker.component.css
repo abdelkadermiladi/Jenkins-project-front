@@ -1,34 +1,50 @@
 .container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .label-container {
-    flex-grow: 1;
-  }
-  
-  #getJobTable {
-    margin-left: 10px;
-  }
-  
-  .job-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .job-table th,
-  
-  .job-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .job-table th {
-    font-weight: bold;
-  }
-  
-  .job-table tbody tr:last-child td {
-    border-bottom: none;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container > div {
+  margin: 0 5px;
+}
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.job-table th,
+.job-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.job-table th {
+  font-weight: bold;
+}
+
+.job-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.custom-button {
+  background-color: #ffc400;
+  color: #000000;
+  padding: 4px 50px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-button:hover {
+  background-color: #b33900;
+}
+
+.custom-button:focus {
+  outline: none;
+}
