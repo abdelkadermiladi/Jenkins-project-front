@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th>Job Name</th>
+        <th>jobStatus</th>
         <th>Build Number</th>
         <th>Date</th>
         <th>Duration</th>
@@ -11,9 +12,11 @@
     <tbody>
       <tr *ngFor="let job of jobDescriptions">
         <td>{{ job.jobname }}</td>
+        <td>{{ job.jobStatus }}</td>
         <td>{{ job.buildnumber }}</td>
         <td>{{ job.date }}</td>
         <td>{{ job.duration }}</td>
+
       </tr>
     </tbody>
 </table>
