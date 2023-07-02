@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,10 +9,14 @@ import { HttpClient } from '@angular/common/http';
 export class TimeRangePickerComponent {
   startTime!: string;
   endTime!: string;
+  //jobBuilds table containing Job Name,	Build Number,	Date,	Duration
   jobBuilds: any[] = [];
+  //builds table containing Build Number, Duration : for the chart
+  builds: { buildnumber: string, duration: string }[] = [];
   DisplayTable: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
 
   submitForm() {
     const startDate = new Date(this.startTime);
@@ -21,6 +25,7 @@ export class TimeRangePickerComponent {
     const formattedStartDate = startDate.toISOString().slice(0, 16);
     const formattedEndDate = endDate.toISOString().slice(0, 16);
 
+    //the inputted startTime date and the endTime date converted to string 
     const dateData = {
       startTime: formattedStartDate,
       endTime: formattedEndDate
@@ -29,13 +34,21 @@ export class TimeRangePickerComponent {
     this.http.post<any[]>('http://localhost:8082/api/job-builds-by-time-range-picker', dateData)
     .subscribe(
       (response) => {
-        console.log('Réponse du serveur :', response);
+        console.log('Server response :', response);
         this.jobBuilds = response;
+        this.builds = response.map(item => ({ buildnumber: item.buildnumber, duration: item.duration }));
         this.DisplayTable = true;
       },
       (error) => {
-        console.error('Erreur lors de la soumission du formulaire :', error);
+        console.error('Error while submitting the form :', error);
       }
     );
+  }
+
+  getBarWidth(duration: string) {
+    const milliseconds = parseInt(duration.split(' ')[0]);
+    const maxDuration = Math.max(...this.builds.map(build => parseInt(build.duration.split(' ')[0])));
+    const maxWidth = 600; // Adjust this value to change the maximum bar width
+    return (milliseconds / maxDuration) * maxWidth + 'px';
   }
 }

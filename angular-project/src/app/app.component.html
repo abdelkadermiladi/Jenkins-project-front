@@ -1,28 +1,23 @@
 <div>
   <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Job Description</h1>
-  <app-job-table></app-job-table>
+  <app-last-job-table></app-last-job-table>
 </div>
+<br> 
 
-<br>
 
-<h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Time Range Job Table</h1>
+
+
+<h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Time Range Job Table And Chart</h1>
 <app-time-range-picker></app-time-range-picker>
 
-<br><br><br>
+<br>
 
 <div class="button-container">
   <button class="custom-button" (click)="showJobTable()">Show last hour job table</button>
 </div>
 
-
 <div *ngIf="showTable">
-  <div style="display: flex; flex-wrap: wrap;">
-    <div style="flex: 1;">
-      <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Hour Job Description</h1>
-      <app-job-table-range></app-job-table-range>
-    </div>
-    <div style="flex: 1;">
-      <app-bar-chart></app-bar-chart>
-    </div>
-  </div>
+  <app-last-hour-table-chart></app-last-hour-table-chart>
 </div>
+
+<!-- <app-bar-chart></app-bar-chart> -->

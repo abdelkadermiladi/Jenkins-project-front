@@ -3,20 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { JobTableComponent } from './job-table/job-table.component';
 
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+
 import { TimeRangePickerComponent } from './time-range-picker/time-range-picker.component';
 import { FormsModule } from '@angular/forms';
-import { JobTableRangeComponent } from './job-table-range/job-table-range.component';
+
+import { LastHourTableChartComponent } from './last-hour-table-chart/last-hour-table-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { LastJobTableComponent } from './last-job-table/last-job-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobTableComponent,
-    JobTableRangeComponent,
-    BarChartComponent,
+
     TimeRangePickerComponent,
+    LastHourTableChartComponent,
+    BarChartComponent,
+    LastJobTableComponent,
 
   ],
   imports: [

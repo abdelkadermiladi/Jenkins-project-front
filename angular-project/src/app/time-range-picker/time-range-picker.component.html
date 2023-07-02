@@ -1,34 +1,47 @@
 <div class="container">
   <div>
     <label>From: </label>
-    <input type="datetime-local" [(ngModel)]="startTime"  id="startTime">
+    <input type="datetime-local" [(ngModel)]="startTime" id="startTime">
   </div>
   <div>
     <label>To: </label>
-    <input type="datetime-local" [(ngModel)]="endTime"  id="endTime">
+    <input type="datetime-local" [(ngModel)]="endTime" id="endTime">
   </div>
   <div class="button-container">
-    <button class="custom-button" id="getJobTable" (click)="submitForm()">View Job Table</button>
+    <button class="custom-button" id="getJobTable" (click)="submitForm()">View Job Table And Chart</button>
   </div>
 </div>
 
 <br>
+<div class="container2">
+  <div class="table-container">
+    <table class="job-table" *ngIf="DisplayTable">
+      <thead>
+        <tr>
+          <th>Job Name</th>
+          <th>Build Number</th>
+          <th>Date</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jobBuild of jobBuilds">
+          <td>{{ jobBuild.jobname }}</td>
+          <td>{{ jobBuild.buildnumber }}</td>
+          <td>{{ jobBuild.date }}</td>
+          <td>{{ jobBuild.duration }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<table class="job-table" *ngIf="DisplayTable">
-  <thead>
-    <tr>
-      <th>Job Name</th>
-      <th>Build Number</th>
-      <th>Date</th>
-      <th>Duration</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let jobBuild of jobBuilds">
-      <td>{{ jobBuild.jobname }}</td>
-      <td>{{ jobBuild.buildnumber }}</td>
-      <td>{{ jobBuild.date }}</td>
-      <td>{{ jobBuild.duration }}</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="chart-container">
+    <br><br>
+    <div class="bar-container" *ngFor="let build of builds">
+      <div class="legend">Number {{ build.buildnumber }}:</div>
+      <div class="bar" [style.width]="getBarWidth(build.duration)">
+        <span class="duration-label">{{ build.duration }}</span>
+      </div>
+    </div>
+  </div>
+</div>

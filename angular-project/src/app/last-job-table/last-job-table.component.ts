@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-job-table',
-  templateUrl: './job-table.component.html',
-  styleUrls: ['./job-table.component.css']
+  selector: 'app-last-job-table',
+  templateUrl: './last-job-table.component.html',
+  styleUrls: ['./last-job-table.component.css']
 })
-export class JobTableComponent implements OnInit {
+export class LastJobTableComponent implements OnInit {
   jobDescriptions: any[] = [];
 
   constructor(private http: HttpClient) {}
