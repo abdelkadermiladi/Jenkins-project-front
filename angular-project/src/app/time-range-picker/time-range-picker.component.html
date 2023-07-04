@@ -13,29 +13,37 @@
 </div>
 
 <br>
-<div class="container2">
-  <div class="table-container">
+<div>
+  <div>
     <table class="job-table" *ngIf="DisplayTable">
       <thead>
         <tr>
           <th>Job Name</th>
+          <th>jobStatus</th>
           <th>Build Number</th>
-          <th>Date</th>
+          <th>Start date</th>
           <th>Duration</th>
+          <th>End date</th>
+          <th>Queuing Duration</th>
+          <th>ExecutionDate</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let jobBuild of jobBuilds">
           <td>{{ jobBuild.jobname }}</td>
+          <td>{{ jobBuild.jobStatus }}</td>
           <td>{{ jobBuild.buildnumber }}</td>
           <td>{{ jobBuild.date }}</td>
           <td>{{ jobBuild.duration }}</td>
+          <td>{{ jobBuild.TheEndTime }}</td>
+          <td>{{ jobBuild.queuingDuration }}</td>
+          <td>{{ jobBuild.ExecutionDate }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="chart-container">
+  <div>
     <br><br>
     <div class="bar-container" *ngFor="let build of builds">
       <div class="legend">Number {{ build.buildnumber }}:</div>

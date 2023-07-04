@@ -4,10 +4,8 @@
   align-items: center;
   flex-wrap: wrap; /* Permet aux éléments de se réorganiser sur plusieurs lignes */
 }
-.container2 {
-  display: flex;
-  justify-content: space-between;
-}
+
+
 .container > div {
   margin: 5px; /* Réduit la marge entre les éléments */
 }
@@ -47,7 +45,6 @@
   cursor: pointer;
 }
 
-
 .custom-button:hover {
   background-color: #b33900;
 }
@@ -82,10 +79,4 @@
   color: rgb(0, 0, 0);
   font-size: 10px;
 }
-.table-container {
-  width: 50%;
-}
 
-.chart-container {
-  width: 50%;
-}
