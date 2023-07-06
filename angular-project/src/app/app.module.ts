@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { LastHourTableChartComponent } from './last-hour-table-chart/last-hour-table-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LastJobTableComponent } from './last-job-table/last-job-table.component';
+import { NodeSelectorComponent } from './node-selector/node-selector.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LastJobTableComponent } from './last-job-table/last-job-table.component
     LastHourTableChartComponent,
     BarChartComponent,
     LastJobTableComponent,
+    NodeSelectorComponent,
 
   ],
   imports: [
