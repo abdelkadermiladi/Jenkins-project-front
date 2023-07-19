@@ -1,5 +1,5 @@
 <div>
-  <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Job Build Description:</h1>
+  <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Job Build Description (project-jenkins):</h1>
   <app-last-job-table></app-last-job-table>
 </div>
 <br> 
@@ -7,22 +7,25 @@
 
 
 
-<h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Time Range Job Table And Chart:</h1>
+<h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Time Range Job Table And Chart (project-jenkins):</h1>
 <app-time-range-picker></app-time-range-picker>
 
 <br>
 
+<br>
+<app-node-selector></app-node-selector>
+
 <div class="button-container">
-  <button class="custom-button" (click)="showJobTable()">Show last hour job table:</button>
+  <button class="custom-button" (click)="showJobTable()">Show last hour job table (project-jenkins):</button>
 </div>
+
 
 <div *ngIf="showTable">
   <app-last-hour-table-chart></app-last-hour-table-chart>
 </div>
 
+
 <!-- <app-bar-chart></app-bar-chart> -->
 
 <br>
 <br>
-<br>
-<app-node-selector></app-node-selector>
