@@ -16,7 +16,7 @@ export class LastJobTableComponent implements OnInit {
   }
 
   fetchJobDescriptions() {
-    this.http.get<any>('http://localhost:8082/api/last-job-build-description')
+    this.http.get<any>('http://localhost:8081/app/api/last-job-build-description')
       .subscribe(
         data => {
           this.jobDescriptions = [data]; // Wrap the data in an array

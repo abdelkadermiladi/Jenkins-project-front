@@ -1,4 +1,14 @@
+
+
 <div class="container">
+
+  <label for="node-select">Choose a node: </label>
+  <select id="node-select" [(ngModel)]="selectedNode">
+    <option value="">--Please choose an option--</option>
+    <option *ngFor="let node of nodeNames" [value]="node">{{ node }}</option>
+  </select>
+
+  
   <div>
     <label>From: </label>
     <input type="datetime-local" [(ngModel)]="startTime" id="startTime">
@@ -10,13 +20,6 @@
 
 
 
-
-
-  <label for="node-select">Choose a node: </label>
-  <select id="node-select" [(ngModel)]="selectedNode" >
-    <option value="">--Please choose an option--</option>
-    <option *ngFor="let node of nodeNames" [value]="node">{{ node }}</option>
-  </select>
   
 
 
@@ -25,6 +28,7 @@
 
   <div class="button-container">
     <button class="custom-button" id="getJobTable" (click)="submitForm()">View Job Table And Chart</button>
+    <button class="custom-button" id="downloadReportButton" (click)="downloadReport()" [disabled]="!DisplayTable">Download Report</button>
   </div>
 </div>
 

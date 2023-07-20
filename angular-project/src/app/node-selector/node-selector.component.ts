@@ -20,7 +20,7 @@ export class NodeSelectorComponent implements OnInit {
   }
 
   getNodes() {
-    this.http.get<any[]>('http://localhost:8082/api/nodeNames').subscribe(
+    this.http.get<any[]>('http://localhost:8081/app/api/nodeNames').subscribe(
       (response: string[]) => {
         this.nodeNames = response;
       },

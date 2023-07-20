@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
+
 @Component({
   selector: 'app-time-range-picker',
   templateUrl: './time-range-picker.component.html',
@@ -22,7 +24,7 @@ export class TimeRangePickerComponent implements OnInit {
   }
 
   getNodes() {
-    this.http.get<any[]>('http://localhost:8082/api/nodeNames').subscribe(
+    this.http.get<any[]>('http://localhost:8081/app/api/nodeNames').subscribe(
       (response: string[]) => {
         this.nodeNames = response;
       },
@@ -70,4 +72,51 @@ export class TimeRangePickerComponent implements OnInit {
     const maxWidth = 600; // Adjust this value to change the maximum bar width
     return (milliseconds / maxDuration) * maxWidth + 'px';
   }
+
+
+
+
+
+
+  downloadReport() {
+    const csvData = this.convertToCSV(this.jobBuilds);
+    const blob = new Blob([csvData], { type: 'text/csv' });
+  
+    // Create a temporary anchor element and set the download link
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'job_report.csv';
+  
+    // Trigger a click on the anchor element to start the download
+    link.click();
+  
+    // Clean up the temporary anchor element and the URL object
+    URL.revokeObjectURL(link.href);
+  }
+  
+  
+  convertToCSV(data: any[]): string {
+    const csvHeader = ['Job Name', 'Job Status', 'Build Number', 'Start date', 'Duration', 'End date', 'Queuing Duration', 'ExecutionDate'];
+    const csvRows = [csvHeader.join(',')];
+  
+    data.forEach((item) => {
+      const row = [
+        item.jobname,
+        item.jobStatus,
+        item.buildnumber,
+        item.date,
+        item.duration,
+        item.TheEndTime,
+        item.queuingDuration,
+        item.ExecutionDate
+      ];
+      csvRows.push(row.join(','));
+    });
+  
+    return csvRows.join('\n');
+  }
+  
+
+  
+
 }
