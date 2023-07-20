@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './node-selector.component.html',
   styleUrls: ['./node-selector.component.css'],
 })
+
+
 export class NodeSelectorComponent implements OnInit {
   nodeNames!: string[];
   selectedNode!: string;
@@ -31,5 +33,18 @@ export class NodeSelectorComponent implements OnInit {
   onNodeSelectionChange() {
     // Handle the selected node change here
     console.log('Selected node:', this.selectedNode);
+  
+    const requestData = { selectedNode: this.selectedNode };
+  
+    this.http.post<any[]>('http://localhost:8081/app/api/SelectedNode', requestData)
+      .subscribe(
+        (response) => {
+          console.log('Server response :', response);
+        },
+        (error) => {
+          console.error('Error while submitting the form :', error);
+        }
+      );
   }
+  
 }

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LastHourTableChartComponent implements OnInit {
-  builds: { buildnumber: string, duration: string }[] = [];
+  builds: {jobname: string, buildnumber: string, duration: string }[] = [];
   jobDescriptions: any[] = [];
 
   constructor(private http: HttpClient) { }
@@ -17,11 +17,12 @@ export class LastHourTableChartComponent implements OnInit {
     this.getJobDurations();
     this.fetchJobDescriptions();
   }
-
+  
   getJobDurations() {
-    this.http.get<any[]>('http://localhost:8082/api/job-builds-last-hour').subscribe(
+    //this.http.get<any[]>('http://localhost:8082/api/job-builds-last-hour').subscribe(
+      this.http.get<any[]>('http://localhost:8081/app/api/job-builds-last-hour').subscribe(
       response => {
-        this.builds = response.map(item => ({ buildnumber: item.buildnumber, duration: item.duration }));
+        this.builds = response.map(item => ({ jobname: item.jobname, buildnumber: item.buildnumber, duration: item.duration }));
       },
       error => {
         console.error('Error fetching job durations:', error);
@@ -37,8 +38,8 @@ export class LastHourTableChartComponent implements OnInit {
   }
   
   fetchJobDescriptions() {
-    this.http.get<any>('http://localhost:8082/api/job-builds-last-hour')
-      .subscribe(
+    //this.http.get<any[]>('http://localhost:8082/api/job-builds-last-hour').subscribe(
+      this.http.get<any[]>('http://localhost:8081/app/api/job-builds-last-hour').subscribe(
         data => {
           this.jobDescriptions = data; // Assign the received data directly
         },

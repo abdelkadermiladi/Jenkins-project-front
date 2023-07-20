@@ -46,7 +46,7 @@
   <div>
     <br><br>
     <div class="bar-container" *ngFor="let build of builds">
-      <div class="legend">Number {{ build.buildnumber }}:</div>
+      <div class="legend">{{ build.jobname }} N° {{ build.buildnumber }}:</div>
       <div class="bar" [style.width]="getBarWidth(build.duration)">
         <span class="duration-label">{{ build.duration }}</span>
       </div>

@@ -12,7 +12,7 @@ export class TimeRangePickerComponent {
   //jobBuilds table containing Job Name,	Build Number,	Date,	Duration
   jobBuilds: any[] = [];
   //builds table containing Build Number, Duration : for the chart
-  builds: { buildnumber: string, duration: string }[] = [];
+  builds: {jobname: string, buildnumber: string, duration: string }[] = [];
   DisplayTable: boolean = false;
 
   constructor(private http: HttpClient) { }
@@ -31,12 +31,15 @@ export class TimeRangePickerComponent {
       endTime: formattedEndDate
     };
 
-    this.http.post<any[]>('http://localhost:8082/api/job-builds-by-time-range-picker', dateData)
+    // this.http.post<any[]>('http://localhost:8082/api/job-builds-by-time-range-picker', dateData)
+    // .subscribe(
+
+    this.http.post<any[]>('http://localhost:8081/app/api/job-builds-by-time-range-picker', dateData)
     .subscribe(
       (response) => {
         console.log('Server response :', response);
         this.jobBuilds = response;
-        this.builds = response.map(item => ({ buildnumber: item.buildnumber, duration: item.duration }));
+        this.builds = response.map(item => ({ jobname: item.jobname,buildnumber: item.buildnumber, duration: item.duration }));
         this.DisplayTable = true;
       },
       (error) => {
