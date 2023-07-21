@@ -11,7 +11,10 @@ export class LastHourTableChartComponent implements OnInit {
   builds: {jobname: string, buildnumber: string, duration: string }[] = [];
   jobDescriptions: any[] = [];
 
+  hasJobDescriptions: boolean = true; // To test if there are jobs to display for the last hour
+
   constructor(private http: HttpClient) { }
+
 
   ngOnInit() {
     this.getJobDurations();
@@ -19,7 +22,6 @@ export class LastHourTableChartComponent implements OnInit {
   }
   
   getJobDurations() {
-    //this.http.get<any[]>('http://localhost:8082/api/job-builds-last-hour').subscribe(
       this.http.get<any[]>('http://localhost:8081/app/api/job-builds-last-hour').subscribe(
       response => {
         this.builds = response.map(item => ({ jobname: item.jobname, buildnumber: item.buildnumber, duration: item.duration }));
@@ -38,10 +40,10 @@ export class LastHourTableChartComponent implements OnInit {
   }
   
   fetchJobDescriptions() {
-    //this.http.get<any[]>('http://localhost:8082/api/job-builds-last-hour').subscribe(
       this.http.get<any[]>('http://localhost:8081/app/api/job-builds-last-hour').subscribe(
         data => {
           this.jobDescriptions = data; // Assign the received data directly
+          this.hasJobDescriptions = this.jobDescriptions.length > 0;
         },
         error => {
           console.log('Error retrieving job descriptions:', error);

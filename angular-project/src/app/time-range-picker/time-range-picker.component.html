@@ -1,13 +1,9 @@
-
-
 <div class="container">
-
   <label for="node-select">Choose a node: </label>
   <select id="node-select" [(ngModel)]="selectedNode">
     <option value="">--Please choose an option--</option>
     <option *ngFor="let node of nodeNames" [value]="node">{{ node }}</option>
   </select>
-
   
   <div>
     <label>From: </label>
@@ -18,34 +14,26 @@
     <input type="datetime-local" [(ngModel)]="endTime" id="endTime">
   </div>
 
-
-
-  
-
-
-
-
-
   <div class="button-container">
     <button class="custom-button" id="getJobTable" (click)="submitForm()">View Job Table And Chart</button>
-    <button class="custom-button" id="downloadReportButton" (click)="downloadReport()" [disabled]="!DisplayTable">Download Report</button>
   </div>
 </div>
 
 <br>
-<div>
-  <div>
-    <table class="job-table" *ngIf="DisplayTable">
+
+<div >
+  <div *ngIf="DisplayTable">
+    <table class="job-table">
       <thead>
         <tr>
           <th>Job Name</th>
           <th>jobStatus</th>
           <th>Build Number</th>
           <th>Start date</th>
-          <th>Duration</th>
+          <th>ExecutionDate</th>
           <th>End date</th>
           <th>Queuing Duration</th>
-          <th>ExecutionDate</th>
+          <th>Duration</th>
         </tr>
       </thead>
       <tbody>
@@ -54,16 +42,22 @@
           <td>{{ jobBuild.jobStatus }}</td>
           <td>{{ jobBuild.buildnumber }}</td>
           <td>{{ jobBuild.date }}</td>
-          <td>{{ jobBuild.duration }}</td>
+          <td>{{ jobBuild.ExecutionDate }}</td>
           <td>{{ jobBuild.TheEndTime }}</td>
           <td>{{ jobBuild.queuingDuration }}</td>
-          <td>{{ jobBuild.ExecutionDate }}</td>
+          <td>{{ jobBuild.duration }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div>
+<!-- Display the "Download Report" button if there are jobs to show -->
+<div class="download-button-container" *ngIf="DisplayTable">
+  <button class="custom-button bigger-button" id="downloadReportButton" (click)="downloadReport()">Download Report</button>
+</div>
+
+
+  <div *ngIf="DisplayTable">
     <br><br>
     <div class="bar-container" *ngFor="let build of builds">
       <div class="legend">{{ build.jobname }} N° {{ build.buildnumber }}:</div>
@@ -73,3 +67,4 @@
     </div>
   </div>
 </div>
+
