@@ -1,28 +1,3 @@
 <div>
-  <h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Last Job Build Description (project-jenkins):</h1>
-  <app-last-job-table></app-last-job-table>
+      <router-outlet></router-outlet>
 </div>
-<br> 
-
-<br>
-<br>
-
-
-<div class="button-container">
-  <button class="custom-button" (click)="showJobTable()">Show last hour job table:</button>
-</div>
-
-
-<div *ngIf="showTable">
-  <app-last-hour-table-chart></app-last-hour-table-chart>
-</div>
-
-<br>
-<br>
-
-
-<h1 style="text-align: center; font-weight: bold; color: rgb(255, 128, 0);">Time Range Job Table And Chart:</h1>
-<app-time-range-picker></app-time-range-picker>
-
-<br>
-<br>

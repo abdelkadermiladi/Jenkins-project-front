@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showTable: boolean = false;
-  showJobTable() {
-    this.showTable = true;
-  }
+
+
+
+
+  isAuthenticated: boolean = false; // Set the initial value of isAuthenticated to false
+
+  handleAuthenticationSuccess() {
+    this.isAuthenticated = true; // Update the value of isAuthenticated upon successful authentication
+}
 }
