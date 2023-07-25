@@ -18,7 +18,7 @@ export class TimeRangePickerComponent implements OnInit {
   builds: { jobname: string, buildnumber: string, duration: string }[] = [];
 
   DisplayTable: boolean = false;
-  showNoJobMessage: boolean = false;
+  noJobsToShow: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -52,9 +52,12 @@ export class TimeRangePickerComponent implements OnInit {
     };
 
     this.http.post<any[]>('http://localhost:8081/app/api/job-builds-by-time-range-picker', dateData)
-      .subscribe(
-        (response) => {
-          console.log('Server response:', response);
+    .subscribe(
+      (response) => {
+        console.log('Server response:', response);
+        
+        if (Array.isArray(response)) {
+          // If the response is an array, process it as usual
           this.jobBuilds = response;
           this.builds = response.map(item => ({
             jobname: item.jobname,
@@ -65,12 +68,23 @@ export class TimeRangePickerComponent implements OnInit {
           // Sort the jobBuilds array based on the startdate
           this.jobBuilds.sort(this.compareJobBuilds);
           this.DisplayTable = true;
-          this.showNoJobMessage = this.jobBuilds.length === 0;
-        },
-        (error) => {
-          console.error('Error while submitting the form:', error);
+        } else {
+          // If the response is not an array, there are no job builds found
+          this.jobBuilds = [];
+          this.builds = [];
+          this.DisplayTable = false;
         }
-      );
+        
+        this.noJobsToShow = this.jobBuilds.length === 0;
+      },
+      (error) => {
+        console.error('Error while submitting the form:', error);
+        this.jobBuilds = [];
+        this.builds = [];
+        this.DisplayTable = false;
+        this.noJobsToShow = true;
+      }
+    );
   }
 
   // Custom comparator function to compare job builds based on startdate
@@ -79,6 +93,16 @@ export class TimeRangePickerComponent implements OnInit {
     const startDateB = new Date(b.date).getTime();
     return startDateA - startDateB;
   }
+
+
+  logout() {
+    // Perform any logout logic here, such as clearing user tokens or session data.
+    // For example, you can redirect the user to the login page.
+    // For this example, we'll simply navigate to a URL representing the Auth page.
+    window.location.href = '/'; // Change '/login' to your actual login page URL.
+  }
+
+
 
   //For Job Duration Visualization
   getBarWidth(duration: string) {

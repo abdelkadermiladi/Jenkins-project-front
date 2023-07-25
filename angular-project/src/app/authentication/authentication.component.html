@@ -1,13 +1,24 @@
 
 <div class="authentication-container">
-  <h1>Authentication</h1>
+  <h1>Jenkins Activity Retrieval</h1>
+
+<br>
+
+<div class="image-container">
+  <img src="assets\jenkins-logo.png" alt="Jenkins Logo" width="100">
+  <img src="assets\primatec-engineering-logo.jpg" alt="Primatec Engineering" width="400">
+</div>
+
+<br><br>
+
+  <h2>Authentication :</h2>
   <form (ngSubmit)="login()">
     <div class="form-group">
-      <label for="username">Username:</label>
+      <label for="username">Username : </label>
       <input type="text" id="username" name="username" [(ngModel)]="username" required>
     </div>
     <div class="form-group">
-      <label for="password">Password:</label>
+      <label for="password">Password : </label>
       <input type="password" id="password" name="password" [(ngModel)]="password" required>
     </div>
 

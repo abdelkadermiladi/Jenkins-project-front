@@ -91,3 +91,26 @@
   font-size: 18px;
   padding: 10px 20px;
 }
+
+
+
+.logout-button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+
+
+
+.logout-button {
+  background-color: #ff0000; /* Customize the background color */
+  color: #fff; /* Customize the text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+}
