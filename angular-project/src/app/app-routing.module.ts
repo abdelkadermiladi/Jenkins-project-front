@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationComponent } from './authentication/authentication.component';
-import { LastJobTableComponent } from './last-job-table/last-job-table.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [

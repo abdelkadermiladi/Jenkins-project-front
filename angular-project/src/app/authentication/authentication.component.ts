@@ -1,5 +1,5 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+
+import { Component} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
@@ -15,12 +15,10 @@ export class AuthenticationComponent {
   loginError: string | null = null;
 
 
- //@Output() authenticationSuccess = new EventEmitter<void>(); // Define an event to emit authentication success
-
-
-  constructor(private http: HttpClient, 
+  constructor(
+    private http: HttpClient, 
     private router: Router,    
-    private authService: AuthenticationService // Inject the AuthenticationService
+    private authService: AuthenticationService 
   ) {}
 
   login() {
@@ -29,11 +27,13 @@ export class AuthenticationComponent {
       password: this.password
     }
 
+    this.authService.authenticatedUsername = this.username;
+
     this.http.post<any>('http://localhost:8081/app/api/authenticate', data).subscribe(
       (response) => {
         console.log('Authentication successful!');
         this.authService.isAuthenticated = true; // Update the authentication status in the service
-        //this.authenticationSuccess.emit();
+
         this.router.navigateByUrl('/next-page');// Navigate to the next page after successful authentication
       
       },
@@ -46,5 +46,7 @@ export class AuthenticationComponent {
 
       }
     );
+
+
   }
 }

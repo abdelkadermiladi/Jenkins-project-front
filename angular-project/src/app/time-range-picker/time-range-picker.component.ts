@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-time-range-picker',
@@ -7,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./time-range-picker.component.css']
 })
 export class TimeRangePickerComponent implements OnInit {
+
+  authenticatedUsername: string | null = null;
 
   nodeNames!: string[];
   selectedNode!: string;
@@ -20,10 +23,15 @@ export class TimeRangePickerComponent implements OnInit {
   DisplayTable: boolean = false;
   noJobsToShow: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthenticationService,
+  ) {}
 
   ngOnInit() {
     this.getNodes();
+    this.authenticatedUsername = this.authService.authenticatedUsername;
+
   }
 
   //Retrieve all the Nodes name from Jenkins
@@ -99,7 +107,7 @@ export class TimeRangePickerComponent implements OnInit {
     // Perform any logout logic here, such as clearing user tokens or session data.
     // For example, you can redirect the user to the login page.
     // For this example, we'll simply navigate to a URL representing the Auth page.
-    window.location.href = '/'; // Change '/login' to your actual login page URL.
+    window.location.href = '/'; 
   }
 
 

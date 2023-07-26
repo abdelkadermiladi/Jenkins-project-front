@@ -1,6 +1,12 @@
 
-<div class="logout-button-container">
-  <button class="custom-button logout-button" id="logoutButton" (click)="logout()">Logout</button>
+<div class="authentication-info">
+  <div class="user-info">
+    <img class="user-icon" src="assets/user-icon.png" alt="User Icon">
+    <p>Welcome, {{ authenticatedUsername }}!</p>
+  </div>
+  <div class="logout-button-container">
+    <button class="custom-button logout-button" id="logoutButton" (click)="logout()">Logout</button>
+  </div>
 </div>
 
 

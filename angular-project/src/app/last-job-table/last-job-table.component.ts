@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { AuthenticationComponent } from '../authentication/authentication.component';
+import { HttpClient} from '@angular/common/http';
+import { Component} from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -9,7 +8,6 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./last-job-table.component.css']
 })
 export class LastJobTableComponent {
-  //@Input() isAuthenticated: boolean = false; // Receive authentication status from parent component
 
   jobDescriptions: any[] = [];
 

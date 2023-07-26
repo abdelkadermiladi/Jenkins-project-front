@@ -9,8 +9,6 @@ import { Component} from '@angular/core';
 export class AppComponent {
 
 
-
-
   isAuthenticated: boolean = false; // Set the initial value of isAuthenticated to false
 
   handleAuthenticationSuccess() {
